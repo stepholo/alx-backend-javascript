@@ -1,6 +1,6 @@
-import { uploadPhoto, createUser } from './utils.js';
+import { uploadPhoto, createUser } from './utils';
 
-function handleProfileSignup() {
+export default function handleProfileSignup() {
   // Use Promise.all to collectively resolve all promises
   Promise.all([uploadPhoto(), createUser()])
     .then(([photoResponse, userResponse]) => {
@@ -9,10 +9,5 @@ function handleProfileSignup() {
       console.log(`First Name: ${userResponse.firstName}`);
       console.log(`Last Name: ${userResponse.lastName}`);
     })
-    .catch((error) = {
-      // Log an error message in case of an error
-      console.error('Signup system offline');
-    });
+    .catch(() => { console.log('Signup system offline'); });
 }
-
-module.export = handleProfileSignup;
